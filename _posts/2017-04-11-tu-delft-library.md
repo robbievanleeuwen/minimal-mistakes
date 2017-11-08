@@ -17,7 +17,7 @@ header:
 
 >As structural and building engineering students, we spend a lot of our time digesting formulas and watching (and re-watching!) technical lectures. This method of education is essential in the development of our engineering skills. However, much can be learnt from appreciating some of the engineering that surrounds us, structures that we pass by every day and never think twice about – the engineering under our noses. In this edition, we focus on a few aspects of the design of the TU Delft Library that make it an interesting focus for structural investigation and appreciation.
 
-{% include figure image_path="/assets/images/posts/2017-04-11-tu-delft-library/tu-iso.jpg" alt="Steel structure" caption="Structural drawing showing the extent of steel used in the structural framing [1]." %}
+{% include figure image_path="/assets/images/posts/2017-04-11-tu-delft-library/tu-iso-drawing.jpg" alt="Steel structure" caption="Structural drawing showing the extent of steel used in the structural framing [1]." %}
 
 ## TU Delft Library Cone
 Almost 30 metres in diameter at its base, the cone provides the library with four levels of studying space. It is almost completely isolated from the rest of the library structure, with a glass roof bridging the gap between its outside face and the green roof of the library. Through the eyes of a structural engineer, the iconic cone serves a crucial purpose, far more important than its intended vision for being a symbol of technical engineering.
