@@ -4,11 +4,11 @@ excerpt: "the structural engineering behind the tu delft library"
 category : Engineering Journalism
 tags : [steel, structural design]
 header:
-  overlay_image: /assets/images/posts/2017-04-11-tu-delft-library/library-outside.JPG
+  overlay_image: /assets/images/posts/2017-04-11-tu-delft-library/library-outside.jpg
   overlay_filter: 0.3 # same as adding an opacity of 0.5 to a black background
   image_description: "citicorp center."
   caption: # "" # for photo credit
-  teaser: /assets/images/posts/2017-04-11-tu-delft-library/library-outside.JPG
+  teaser: /assets/images/posts/2017-04-11-tu-delft-library/library-outside.jpg
 ---
 
 # Appreciating the structural engineering of the TU Delft library
