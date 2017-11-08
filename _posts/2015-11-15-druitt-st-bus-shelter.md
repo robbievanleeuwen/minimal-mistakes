@@ -1,6 +1,6 @@
 ---
-title: "druitt street bus shelter: dorsal wing [2013]"
-excerpt: "structural design of a stainless steel bus shelter in sydney"
+title: "druitt street bus shelter: dorsal wing"
+excerpt: "structural design of a stainless steel bus shelter in sydney [2013]"
 category : Structural Engineering
 tags : [steel, structural design, infrastructure]
 header:

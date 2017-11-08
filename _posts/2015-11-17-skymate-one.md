@@ -1,6 +1,6 @@
 ---
-title: "skymate I: adelaide mega adventure park [2015]"
-excerpt: "structural design of an aerial adventure park"
+title: "skymate I: adelaide mega adventure park"
+excerpt: "structural design of an aerial adventure park [2015]"
 category : Structural Engineering
 tags : [steel, structural design, special structures]
 header:

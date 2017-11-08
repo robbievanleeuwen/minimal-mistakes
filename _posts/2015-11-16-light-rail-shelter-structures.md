@@ -1,6 +1,6 @@
 ---
-title: "sydney light rail: inner west extension shelter structures [2014]"
-excerpt: "structural design of the shelter structures for the light rail extension in sydney"
+title: "sydney light rail: inner west extension shelter structures"
+excerpt: "structural design of the shelter structures for the light rail extension in sydney [2014]"
 category : Structural Engineering
 tags : [steel, structural design, infrastructure]
 header:

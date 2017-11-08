@@ -1,6 +1,6 @@
 ---
-title: "samsung spiral stair [2015]"
-excerpt: "structural design of a steel plate spiral staircase"
+title: "samsung spiral stair"
+excerpt: "structural design of a steel plate spiral staircase [2015]"
 category : Structural Engineering
 tags : [steel, structural design, commercial]
 header:
