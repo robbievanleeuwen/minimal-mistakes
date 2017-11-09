@@ -1,7 +1,7 @@
 # main links
 main:
   - title: "CV"
-    url: /assets/CV.pdf
+    url: /assets/cv.pdf
   - title: "Categories"
     url: /categories/
   - title: "Tags"
