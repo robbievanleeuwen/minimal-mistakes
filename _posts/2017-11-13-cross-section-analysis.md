@@ -55,7 +55,7 @@ A cross-section analysis is performed on an unequal angle section (150D x 100W x
 * Bending moment about y-axis = 5 kN.m
 * Torsion moment = 1 kN.m
 * Transverse shear force in the x-direction = 5 kN
-* Transverse shear force in the x-direction = 3 kN
+* Transverse shear force in the y-direction = 3 kN
 
 The following code executes the analysis:
 
