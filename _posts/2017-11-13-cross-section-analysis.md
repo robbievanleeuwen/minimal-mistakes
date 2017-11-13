@@ -64,7 +64,7 @@ import main
 import sectionGenerator
 
 # Create angle section
-(points, facets, holes) = sectionGenerator.AngleToe(90, 150, 12, 10, 5, 16)
+(points, facets, holes) = sectionGenerator.AngleToe(d=90, b=150, t=12, r_root=10, r_toe=5, n_r=16)
 
 # Perform cross-sectional analysis
 mesh = main.crossSectionAnalysis(points, facets, holes, meshSize=2.5, nu=0.3)
