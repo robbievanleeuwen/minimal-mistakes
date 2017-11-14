@@ -75,11 +75,21 @@ main.stressAnalysis(mesh, Nzz=-50e3, Mxx=3e6, Myy=5e6, M11=0, M22=0, Mzz=1e6, Vx
 
 The mesh used for warping analysis is shown below:
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/mesh.png" alt="mesh" caption="Mesh used for warping analysis with maximum element area of 2.5 mm<sup>2</sup>." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/mesh.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/mesh.png" alt="mesh">
+  </a>
+  <figcaption>Mesh used for warping analysis with maximum element area of 2.5 mm<sup>2</sup>.</figcaption>
+</figure>
 
 The centroidal locations are shown in the figure below:
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/centroid.png" alt="centroids" caption="Principal bending axis and various centroidal locations." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/centroid.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/centroid.png" alt="centroids">
+  </a>
+  <figcaption>Principal bending axis and various centroidal locations.</figcaption>
+</figure>
 
 Selected annotated section property output is displayed below:
 
@@ -121,10 +131,30 @@ A_s,22 = 1459.5422681
 
 Selected stress analysis plots are shown below:
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/bending.png" alt="bending" caption="Contour plot showing bending stress." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/bending.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/bending.png" alt="bending">
+  </a>
+  <figcaption>Contour plot showing bending stress.</figcaption>
+</figure>
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/torsion.png" alt="torsion" caption="Vector plot showing torsion stress." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/torsion.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/torsion.png" alt="torsion">
+  </a>
+  <figcaption>Vector plot showing torsion stress.</figcaption>
+</figure>
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/shear.png" alt="shear" caption="Contour plot showing shear stress." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/shear.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/shear.png" alt="shear">
+  </a>
+  <figcaption>Contour plot showing shear stress.</figcaption>
+</figure>
 
-{% include figure image_path="/assets/images/posts/2017-11-13-cross-section-analysis/vonMises.png" alt="von Mises" caption="Contour plot showing von Mises stress." %}
+<figure>
+  <a href="/assets/images/posts/2017-11-13-cross-section-analysis/vonMises.png">
+    <img src="/assets/images/posts/2017-11-13-cross-section-analysis/vonMises.png" alt="vonMises">
+  </a>
+  <figcaption>Contour plot showing von Mises stress.</figcaption>
+</figure>
