@@ -46,7 +46,7 @@ main.stressAnalysis(mesh2, Nzz=0, Mxx=0, Myy=0, M11=0, M22=0, Mzz=1e6, Vx=0, Vy=
 
 ### Closed RHS results
 
-The torsion constant was calculated by the python program to be J = 14.236 x 10<sup>6</sup> mmmm<sup>4</sup>.
+The torsion constant was calculated by the python program to be J = 14.236 x 10<sup>6</sup> mm<sup>4</sup>.
 
 <figure>
   <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png">
@@ -142,7 +142,7 @@ A mesh refinement study using the python cross-section program shows that the On
 * Torsion Constant [1]
 
 $$
-J \approx \sum \left(\frac{b t^3}{3}\right) = \frac{2(90)(15)^3 + (220)(8)^3}{3} = 240.0 \times 10^3 \textrm{mm}^4
+J \approx \sum \left(\frac{b t^3}{3}\right) = 240.0 \times 10^3 \textrm{mm}^4
 $$
 
 * Warping Constant [1]
