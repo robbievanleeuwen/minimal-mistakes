@@ -1,2 +1,1 @@
-# To-Do:
-1) cross-section properties blog
+# structural engineering blog - robbie van leeuwen
