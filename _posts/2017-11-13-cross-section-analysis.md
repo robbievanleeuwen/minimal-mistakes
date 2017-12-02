@@ -1,8 +1,8 @@
 ---
 title: "arbitrary cross-section analysis in python"
 excerpt: "an open source python program performing cross-section analysis on arbitrary sections"
-category : [Computational Mechanics, Finite Element Analysis]
-tags : [section properties, structural engineering, programming]
+category : Finite Element Analysis
+tags : [section properties, structural engineering, programming, computational mechanics]
 header:
   overlay_image: /assets/images/posts/2017-11-13-cross-section-analysis/torsion-stress.png
   overlay_filter: 0.3 # same as adding an opacity of 0.5 to a black background

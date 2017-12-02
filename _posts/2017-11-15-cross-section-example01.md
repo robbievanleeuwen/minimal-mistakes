@@ -1,17 +1,17 @@
 ---
 title: "cross-section analysis examples"
 excerpt: "analysis of built-up sections, a channel section and a split hollow section"
-category : [Computational Mechanics, Finite Element Analysis]
-tags : [section properties, structural engineering, programming]
+category : Finite Element Analysis
+tags : [section properties, structural engineering, programming, computational mechanics]
 header:
   overlay_image: /assets/images/posts/2017-11-15-cross-section-example01/header.png
   overlay_filter: 0.3 # same as adding an opacity of 0.5 to a black background
   image_description: "Built-up section."
   caption: # "" # for photo credit
-  teaser: /assets/images/posts/2017-11-15-cross-section-example01/header.png
+  teaser: /assets/images/posts/2017-11-15-cross-section-example01/teaser.png
 ---
 
-# Cross-section Analysis Examples
+# Cross-Section Analysis Examples
 
 ## Contents
 
