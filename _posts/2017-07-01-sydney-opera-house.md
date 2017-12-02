@@ -11,7 +11,7 @@ header:
   teaser: /assets/images/posts/2017-07-01-sydney-opera-house/teaser.jpg
 ---
 
-## Design and construction of the roof sails
+## Design and construction of the Sydney Opera House roof sails
 
 ###### - *download the full article [here](/assets/images/posts/2017-07-01-sydney-opera-house/uprofiel-opera-house.pdf).*
 

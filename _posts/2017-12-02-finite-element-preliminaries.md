@@ -45,8 +45,8 @@ Although it has an intimidating name, the isoparametric representation has a rel
 
 <figure>
 <div align="center">
-  <a href="/assets/images/posts/2017-12-02-finite-element-preliminaries/iso4.png">
-    <img src="/assets/images/posts/2017-12-02-finite-element-preliminaries/iso4.png" alt="isoparametric triangle.">
+  <a href="/assets/images/posts/2017-12-02-finite-element-preliminaries/iso.png">
+    <img src="/assets/images/posts/2017-12-02-finite-element-preliminaries/iso.png" alt="isoparametric triangle.">
   </a>
 </div>
   <figcaption>Mapping between an isoparametric triangular element and its parent element [Samer Adeeb: http://sameradeeb.srv.ualberta.ca/].</figcaption>
