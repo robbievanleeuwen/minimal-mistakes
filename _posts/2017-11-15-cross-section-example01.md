@@ -137,7 +137,7 @@ I_w = 35.9 \times 10^9 \textrm{mm}^6 \\
 x_s = -58.5 \textrm{mm}
 $$
 
-A mesh refinement study using the python cross-section program shows that the OneSteel values for the torsion constant is slightly (4%) overestimated, whereas the warping constant and shear centre show closer convergence. The numerical results obtained from the python program can be compared to simple hand calculations:
+A mesh refinement study using the python cross-section program shows that the OneSteel value for the torsion constant is slightly (4%) overestimated, whereas the warping constant and shear centre show closer convergence. The numerical results obtained from the python program can be compared to simple hand calculations:
 
 * Torsion Constant [1]
 
@@ -156,8 +156,6 @@ $$
 $$
 x_s = -x_c + \frac{t_w}{2} -\frac{3 t_f (b_f - 0.5t_w)^2 }{6 (b_f - 0.5t_w) t_f + (d - t_f) t_w} = 59.20 \textrm{mm}
 $$
-
-which gives a distance to the centroid of -59.2 mm.
 
 The above hand calculations align well with the results from the python program and the OneSteel catalogue.
 

@@ -52,6 +52,7 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
 github                   : [metadata]
+search                   : true
 
 # SEO Related
 google_site_verification :
