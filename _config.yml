@@ -53,6 +53,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 github                   : [metadata]
 search                   : true
+search_full_content      : true
 
 # SEO Related
 google_site_verification :
