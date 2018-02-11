@@ -133,7 +133,7 @@ for el in elements:
     # and j is the determinant of the Jacobian
     ixx += gp[0] * (N.dot(xy[1,:])) ** 2 * j
 
-print "ixx_ = {}".format(ixx)
+print "ixx = {}".format(ixx)
 ```
 
 The above procedure can be applied to most finite element analyses that involve the calculation of a quantity or the assembly of a stiffness matrix. In the upcoming blog posts I'll be focussing more on the computation of specific section properties, which all use the above procedure in one way or another.

@@ -310,4 +310,4 @@ The mesh, centroids and stress contours are shown below:
 
 ## References
 1. AS 4100-1998: Steel Structures
-2. W.D.Pilkey, Analysis and Design of Elastic Beams: Computational Methods, John Wiley & Sons, Inc., New York, 2002.
+2. W.D. Pilkey, Analysis and Design of Elastic Beams: Computational Methods, John Wiley & Sons, Inc., New York, 2002.
