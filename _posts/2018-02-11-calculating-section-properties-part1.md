@@ -13,7 +13,7 @@ header:
 
 >This blog post presents some of the finite element theory used in the section properties program in a simplified and easy to understand manner. It is worth noting that the notions used in the section properties program are the same that are applied in commercial finite element solvers. For a more in-depth overview of the section properties program, check out the paper I wrote [here](/assets/cross-section.pdf).
 
-Building on the preliminaries covered in the previous blog post [[finite element prelimiaries](/finite%20element%20analysis/finite-element-preliminaries/)], we can now quite easily calculate the area related section properties. This blog post will cover the computation of the following properties: *cross-section area, first moments of area, second moments of area, area centroids, radii of gyration, elastic section moduli and principal axis properties.* A code extract will follow each explanation, showing the implementation of the theory.
+Building on the preliminaries covered in the previous blog post [[finite element preliminaries](/finite%20element%20analysis/finite-element-preliminaries/)], we can now quite easily calculate the area related section properties. This blog post will cover the computation of the following properties: *cross-section area, first moments of area, second moments of area, area centroids, radii of gyration, elastic section moduli and principal axis properties.* A code extract will follow each explanation, showing the implementation of the theory.
 
 The most important formula to remember from the previous post is shown below:
 
@@ -224,7 +224,7 @@ $$
 where $$\Delta$$ is defined as follows:
 
 $$
-\Delta = \sqrt{\left(\frac{I_{\bar{xx}} - I_{\bar{yy}}}{2}\right)^2 + {I_{\bar{xy}}}^2}
+\Delta = \sqrt{\left(\frac{I_{\overline{xx}} - I_{\overline{yy}}}{2}\right)^2 + {I_{\overline{xy}}}^2}
 $$
 
 Once the principal moments of inertia are calculated, the angle between the x-axis and the axis belonging to the largest principal moment of inertia can be computed as follows:
