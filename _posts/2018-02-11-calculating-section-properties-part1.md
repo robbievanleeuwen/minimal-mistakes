@@ -18,10 +18,10 @@ Building on the preliminaries covered in the previous blog post [[finite element
 The most important formula to remember from the previous post is shown below:
 
 $$
-\int_{\Omega} f(x,y) \, d\Omega = \sum_e \sum_{i=1}^n w_i \, f(x_i,y_i) J_e
+\int_{\Omega} f(x,y) \, d\Omega = \sum_e \sum_{i=1}^n w_i \, f(x_i,y_i) \, J_e
 $$
 
-This expression starts with the integration of a function, $$\, f(x,y)$$, over the domain of the cross section, $$\Omega$$, and converts it to a discrete sum which can be evaluated at each Gauss point, $$i$$, within each element, $$e$$. We'll be using this formula in the calculation of most section properties.
+This expression starts with the integration of a function $$\, f(x,y)$$ over the domain of the cross section $$\Omega$$ and converts it to a discrete sum which can be evaluated at each Gauss point $$i$$ within each element $$e$$. We'll be using this formula in the calculation of most section properties.
 
 ## Cross-section Area
 
@@ -151,9 +151,9 @@ print "iyy = {}".format(ixy)
 The above moments of inertia have been calculated about the global coordinate system, however we are usually more interested in the moments of inertia about the centroidal axis. The global moments of inertia can be transformed to the centroidal axis using the following expressions:
 
 $$
-I_{\bar{xx}} = I_{xx} - \frac{(Q_x)^2}{A} \\
-I_{\bar{yy}} = I_{yy} - \frac{(Q_y)^2}{A} \\
-I_{\bar{xy}} = I_{xy} - \frac{Q_x Q_y}{A}
+I_{\overline{xx}} = I_{xx} - \frac{(Q_x)^2}{A} \\
+I_{\overline{yy}} = I_{yy} - \frac{(Q_y)^2}{A} \\
+I_{\overline{xy}} = I_{xy} - \frac{Q_x Q_y}{A}
 $$
 
 This is easily implemented in python as follows:
@@ -176,17 +176,17 @@ $$
 The radii of gyration are defined as follows:
 
 $$
-r_x = \sqrt{\frac{I_{\bar{xx}}}{A}} \\
-r_y = \sqrt{\frac{I_{\bar{yy}}}{A}}
+r_x = \sqrt{\frac{I_{\overline{xx}}}{A}} \\
+r_y = \sqrt{\frac{I_{\overline{yy}}}{A}}
 $$
 
 The elastic section moduli are defined as follows:
 
 $$
-Z_{xx}^+ = \frac{I_{\bar{xx}}}{y_{max} - y_c} \\
-Z_{xx}^- = \frac{I_{\bar{xx}}}{y_c - y_{min}} \\
-Z_{yy}^+ = \frac{I_{\bar{yy}}}{x_{max} - x_c} \\
-Z_{yy}^- = \frac{I_{\bar{yy}}}{x_c - x_{min}}
+Z_{xx}^+ = \frac{I_{\overline{xx}}}{y_{max} - y_c} \\
+Z_{xx}^- = \frac{I_{\overline{xx}}}{y_c - y_{min}} \\
+Z_{yy}^+ = \frac{I_{\overline{yy}}}{x_{max} - x_c} \\
+Z_{yy}^- = \frac{I_{\overline{yy}}}{x_c - x_{min}}
 $$
 
 The above expressions can be directly computed after executing the previous python code snippets:
@@ -217,8 +217,8 @@ zyy_minus = iyy_c / (x_c - xmin)
 The principal bending axes are determined by calculating the principal moments of inertia [1]:
 
 $$
-I_{11} = \frac{I_{\bar{xx}} + I_{\bar{yy}}}{2} + \Delta \\
-I_{22} = \frac{I_{\bar{xx}} + I_{\bar{yy}}}{2} - \Delta
+I_{11} = \frac{I_{\overline{xx}} + I_{\overline{yy}}}{2} + \Delta \\
+I_{22} = \frac{I_{\overline{xx}} + I_{\overline{yy}}}{2} - \Delta
 $$
 
 where $$\Delta$$ is defined as follows:
@@ -230,7 +230,7 @@ $$
 Once the principal moments of inertia are calculated, the angle between the x-axis and the axis belonging to the largest principal moment of inertia can be computed as follows:
 
 $$
-\phi = {\tan}^{-1} \left(\frac{I_{\bar{xx}} - I_{11}}{I_{\bar{xy}}}\right)
+\phi = {\tan}^{-1} \left(\frac{I_{\overline{xx}} - I_{11}}{I_{\overline{xy}}}\right)
 $$
 
 The principal radii of gyration can be easily calculated using the new principal moments of inertia. To calculate the principal elastic section moduli, the distance to the extreme fibres in the principal directions needs to be determined. Firstly, a function is written to convert a coordinate in the xy-axis into a principal axis coordinate:
