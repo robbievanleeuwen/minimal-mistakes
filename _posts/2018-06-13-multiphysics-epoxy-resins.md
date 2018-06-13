@@ -37,14 +37,14 @@ In my thesis I presented a multiphysics framework for the simulation of hygrothe
     <img src="/assets/images/posts/2018-06-13-multiphysics-epoxy-resins/multiphys.png" alt="Multiphysics Framework." style="width:100%;height:80%;">
   </a>
 </div>
-  <figcaption>Schematic diagram of the multiphysics model. A one way coupling was used between the physical models and the energy dissipated through mechanical deformation passed to the heat model in the proceeding time increment.</figcaption>
+  <figcaption>Schematic diagram of the multiphysics model. A one way coupling was used between the physical models. The temperature and moisture fields were passed to the mechanics model to simulate hygrothermal ageing and the energy dissipated through mechanical deformation was passed to the heat model in the proceeding time increment.</figcaption>
 </figure>
 
 ## Multiphysics Numerical Framework
 
 ### Heat Conduction and Moisture Diffusion
 
-Both head conduction and moisture diffusion follow a similar formulation based on the governing laws of Fourier heat conduction and Fickian diffusion. Fourier heat conduction which states that heat flux is proportional to the negative gradient of the temperature:
+Both heat conduction and moisture diffusion follow similar formulations based on the governing laws of Fourier heat conduction and Fickian diffusion. Fourier heat conduction states that heat flux is proportional to the negative gradient of the temperature:
 
 $$
 q = -\kappa \nabla T
@@ -56,7 +56,7 @@ $$
 j = -D_\omega \nabla \omega
 $$
 
-When combined with conservation of energy, the strong formulation of the transport problem can be obtained. Inline with finite element theory, the weak form can be obtained with consideration of the boundary conditions. The transient formulation of the transport processes produces the assembly of element level matrices and vectors. In this blog post, the finite element formulation of the heat conduction model is presented. For a full derivation of both formulations, the reader is referred to the full report referred to at the top of this page. The finite element formulation of the heat conduction model is:
+When combined with the conservation laws, the strong formulation of these transport problems can be obtained. Inline with finite element theory, the weak form can be obtained by considering relevant the boundary conditions. The transient formulation of the transport processes produces the assembly of element level matrices and vectors. In this blog post, the finite element formulation of the heat conduction model is presented. For a full derivation of both formulations, the reader is referred to the full report referred to at the top of this page. The finite element formulation of the heat conduction model is:
 
 $$
 \mathcal{A}_e \, \bigg\{\left(\textbf{k}_{\text{h},e} + \textbf{h}_{\text{h},e} \right) T_e + \textbf{c}_{\text{h},e} \dot{T}_e = \textbf{r}_h + \textbf{r}_q + \textbf{r}_Q \bigg\}
@@ -96,7 +96,7 @@ $$
 \end{align}
 $$
 
-Of main interest in this thesis is the determination of the material constitutive matrix for epoxy resins $$\textbf{D}$$ and the resulting stress vector $$\vec{\sigma}$$. The ingredients that contribute to this constitutive attempt to characterise the mechanical behaviour of epoxy resins and in this thesis consists of the following:
+Of main interest in this thesis is the determination of the material constitutive matrix for epoxy resins $$\textbf{D}$$ and the resulting stress vector $$\vec{\sigma}$$. The ingredients that contribute to this constitutive attempt to characterise the mechanical behaviour of epoxy resins and in this thesis consist of the following:
 
 - Non-linear viscoelasticity
 - Viscoplasticity
@@ -120,7 +120,7 @@ $$
 \end{align}
 $$
 
-In the above equations the function $$g$$ introducing non-linearity into the viscoelastic model. The finite element implementation of the above formulation is further elaborated in the full report. Following from the finite element formulation of the stress vector, the tangent stiffness $$D$$ can also be derived.
+In the above equations the function $$g$$ introduces non-linearity into the viscoelastic model. The finite element implementation of the above formulation is further elaborated in the full report. Following from the finite element formulation of the stress vector, the tangent stiffness $$\textbf{D}$$ can also be derived.
 
 #### Viscoplasticity
 
@@ -162,7 +162,7 @@ The simplicity of the glass transition model is that the state of the material c
 
 #### Material Degradation
 
-The purpose of the degradation model is to relate the current state of the epoxy resin to its current material properties. The relevant material properties of the epoxy resin are assumed to be constant in the glassy and rubbery states, and are linearly interpolated based on the degree of glass transition $$\zeta$$ in the mixed state. The state dependent material properties is generalised as follows:
+The purpose of the degradation model is to relate the current state of the epoxy resin to its current material properties. The relevant material properties of the epoxy resin are assumed to be constant in the glassy and rubbery states, and are linearly interpolated based on the degree of glass transition $$\zeta$$ in the mixed state. The state dependent material properties are generalised as follows:
 
 $$
 \Theta (\zeta) = (1-\zeta) \Theta^\text{gla} + \zeta \Theta^\text{rub}
@@ -181,7 +181,7 @@ While this method simplifies the material behaviour by imposing a constant prope
 
 ## Multiphysics Fatigue Analysis
 
-Using a finite element implementation of the above multiphysics model, a fatigue test was numerically performed on an epoxy resin sample. A dogbone sample, initially at room temperature, was surrounded by air at room temperature. A cyclic load was applied to the end of the specimen at a high strain rate in order to significantly increase the temperature of the epoxy resin. The multiphysics model formulated in my thesis is able to capture the competing processes of internal heat generation from viscous mechanical deformation and dissipative cooling by the surrounding fluid.
+Using a finite element implementation of the aforementioned multiphysics model, a fatigue test was numerically performed on an epoxy resin sample. A dogbone sample, initially at room temperature, was surrounded by air at room temperature. A cyclic load was applied to the end of the specimen at a high strain rate in order to significantly increase the temperature of the epoxy resin. The multiphysics model formulated in my thesis is able to capture the competing processes of internal heat generation from viscous mechanical deformation and dissipative cooling by the surrounding fluid.
 
 <figure>
 <div align="center">
@@ -196,7 +196,7 @@ The simulation is summarised in the animation below, in which the temperature of
 
 {% include video id="CrThw3o0iCI" provider="youtube" %}
 
-The multiphysics framework is able to capture the glass transition that occurs due to the heat generated by mechanical deformation. This glass transition occurs first at the edges of the speciment where the stress concentration is the highest. A corresponding redistribution of stress towards the centre of the element accompanies this material state transition as the load moves away from the softening material at the edges. Eventually the entire central section of specimen transitions to a rubbery state and a uniform stress distribution is obtained. This characteristic cyclic softening is further highlighted in the load displacement plot in which a softening of the material response, entirely induced by cyclic loading, occurs after several thousand cycles.
+The multiphysics framework is able to capture the glass transition that occurs due to the heat generated by mechanical deformation. This glass transition occurs first at the edges of the specimen where the stress concentration is the highest. A corresponding redistribution of stress towards the centre of the element accompanies this material state transition as the load moves away from the softening material at the edges. Eventually the entire central section of specimen transitions to a rubbery state and a uniform stress distribution is obtained. This characteristic cyclic softening is further highlighted in the load displacement plot in which a softening of the material response, entirely induced by cyclic loading, occurs after approximately 3000 cycles.
 
 ## Conclusions
 
@@ -206,5 +206,5 @@ Not mentioned in this blog, but covered in the full report, are further topics r
 
 - Assessment of the non-linear viscoelasticity model
 - Experiments (DMA and creep tests) conducted on epoxy resin samples
-- Mesh sensitivity study on a continuum damage model for epoxy resins
+- Mesh sensitivity studies on a continuum damage model for epoxy resins
 - Recommendations for future work related to the ideas presented in my thesis
