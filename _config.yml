@@ -33,7 +33,7 @@ comments:
 staticman:
   allowedFields          : # ['name', 'email', 'url', 'message']
   branch                 : # "master"
-  commitMessage          : # "New comment."
+  commitMessage          : # "New comment by {fields.name}"
   filename               : # comment-{@timestamp}
   format                 : # "yml"
   moderation             : # true
@@ -91,32 +91,36 @@ author:
   avatar           : "/assets/images/bio-photo.jpg"
   bio              : "structural engineer dabbling in computational methods."
   location         : "Sydney, AUS"
-  email            : "robbie.vanleeuwen@gmail.com"
-  uri              :
-  home             : # null (default), "absolute or relative url to link to author home"
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         :
-  foursquare       :
-  github           : "robbievanleeuwen"
-  gitlab           :
-  google_plus      :
-  keybase          :
-  instagram        : "robbie_vanleeuwen"
-  lastfm           :
-  linkedin         : "robbie-van-leeuwen"
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : "6426467/robbie-van-leeuwen"
-  steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
-  tumblr           :
-  twitter          :
-  vine             :
-  weibo            :
-  xing             :
-  youtube          : # "https://youtube.com/c/MichaelRoseDesign"
+  email            :
+  links:
+    - label:  "Email"
+      icon:   "fas fa-fw fa-envelope-square"
+      url:    mailto:robbie.vanleeuwen@gmail.com
+    - label:  "LinkedIn"
+      icon:   "fab fa-fw fa-linkedin"
+      url:    "https://www.linkedin.com/in/robbie-van-leeuwen/"
+    - label:  "GitHub"
+      icon:   "fab fa-fw fa-github"
+      url:    "https://github.com/robbievanleeuwen"
+    - label:  "Instagram"
+      icon:   "fab fa-fw fa-instagram"
+      url:    "https://instagram.com/robbie_vanleeuwen"
+
+# Site Footer
+footer:
+  links:
+    - label:  "Email"
+      icon:   "fas fa-fw fa-envelope-square"
+      url:    mailto:robbie.vanleeuwen@gmail.com
+    - label:  "LinkedIn"
+      icon:   "fab fa-fw fa-linkedin"
+      url:    "https://www.linkedin.com/in/robbie-van-leeuwen/"
+    - label:  "GitHub"
+      icon:   "fab fa-fw fa-github"
+      url:    "https://github.com/robbievanleeuwen"
+    - label:  "Instagram"
+      icon:   "fab fa-fw fa-instagram"
+      url:    "https://instagram.com/robbie_vanleeuwen"
 
 
 # Reading Files
