@@ -137,3 +137,5 @@ print "ixx = {}".format(ixx)
 ```
 
 The above procedure can be applied to most finite element analyses that involve the calculation of a quantity or the assembly of a stiffness matrix. In the upcoming blog posts I'll be focussing more on the computation of specific section properties, which all use the above procedure in one way or another.
+
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"541c65ecb1b23522bcf1300db","lid":"b7a47b4e83","uniqueMethods":true}) })</script>

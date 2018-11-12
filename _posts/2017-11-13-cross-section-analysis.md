@@ -1,6 +1,6 @@
 ---
 title: "arbitrary cross-section analysis in python"
-excerpt: "an open source python program performing cross-section analysis on arbitrary sections"
+excerpt: "an open source python package performing cross-section analysis on arbitrary sections"
 category : Finite Element Analysis
 tags : [section properties, structural engineering, programming, computational mechanics]
 header:
@@ -13,22 +13,23 @@ header:
 
 # Introducing a free, rigorous cross-section analysis tool
 
-###### - *check out the program and its documentation [here](https://github.com/robbievanleeuwen/section-properties).*
+###### - *check out the [program](https://github.com/robbievanleeuwen/section-properties) and its [documentation](https://sectionproperties.readthedocs.io/).*
 
-
-Over the past few months I have been creating and refining a program in python that calculates structural properties for any cross-section imaginable and displays the internal stresses on the section resulting from any combination of design actions. It is finally at a point where I'm ready to share it and its output has been verified through comparison of section property data for standard steel sections.
+Over the past few months I have been creating and refining a package in python that calculates structural properties for any cross-section imaginable and displays the internal stresses on the section resulting from any combination of design actions. It is finally at a point where I'm ready to share it and its output has been verified through comparison of section property data for standard steel sections.
 
 The motivation for the creation of this software is the lack of a **free** and rigorous analysis tool that can be used to calculate section properties for complex, built up sections. In developing the program, I also realised that the stress verification of cross-sections subject to multiple design actions can be streamlined through the visualisation of stress contour plots.
 
->This post is intended to introduce the program and highlight its capabilities and simplicity of operation. Later posts will detail the theory behind the calculation of each section property and reveal the inner workings of the program.
+>This post is intended to introduce the package and highlight its capabilities and simplicity of operation. Later posts will detail the theory behind the calculation of each section property and reveal the inner workings of the package.
 
 ### Calculated cross-section properties
 
 The program applies the finite element method to calculate the following cross-section properties:
 
-* Area Properties: Area, elastic centroid, first and second moments of area, elastic section moduli, radii of gyration, principal bending axis rotation angle, second moments of area, elastic section moduli and radii of gyration about the principal bending axis, elastic centroid (for bending about the centroidal and principal axes), elastic section moduli (for bending about the centroidal and principal axes), corresponding shape factors.
+* Area Properties: Area, elastic centroid, first and second moments of area, elastic section moduli, radii of gyration, principal bending axis rotation angle, second moments of area, elastic section moduli and radii of gyration about the principal bending axis, plastic centroid (for bending about the centroidal and principal axes), plastic section moduli (for bending about the centroidal and principal axes) and corresponding shape factors.
 
 * Warping Properties: St. Venant torsion constant, warping constant, shear centre, shear areas (for shear loading about global and principal axes).
+
+* Composite Section Properties: as above but modulus weighted for composite sections.
 
 ### Stress Analysis
 
@@ -44,11 +45,11 @@ The following stress plots will then be generated: axial, bending, torsion, tran
 
 ### Try it yourself!
 
-If you have a basic understanding of python, the program is very simple to use. Head over to [GitHub](https://github.com/robbievanleeuwen/section-properties) to download the program and check out the documentation. If you have trouble with anything, including getting the program up and running, performing an analysis or find any bugs, feel free to leave a comment below or flick me an [email](mailto:robbie.vanleeuwen@gmail.com).
+If you have a basic understanding of python, the package is very simple to use. Head over to [GitHub](https://github.com/robbievanleeuwen/section-properties) to download the program and check out the [documentation](https://sectionproperties.readthedocs.io/). If you have trouble with anything, including getting the package up and running, performing an analysis or find any bugs, feel free to leave a comment below or flick me an [email](mailto:robbie.vanleeuwen@gmail.com).
 
 ### Example analysis: 150 x 90 x 12 UA
 
-A cross-section analysis is performed on an unequal angle section (150D x 100W x 12THK). A mesh size of 2.5 mm<sup>2</sup> is used. The following design actions are applied to determine the cross-section stresses:
+A cross-section analysis is performed on an unequal angle section (150D x 90W x 12THK). A mesh size of 2.5 mm<sup>2</sup> is used. The following design actions are applied to determine the cross-section stresses:
 
 * Axial force = -50 kN
 * Bending moment about x-axis = 3 kN.m
@@ -60,17 +61,29 @@ A cross-section analysis is performed on an unequal angle section (150D x 100W x
 The following code executes the analysis:
 
 ```python
-import main
-import sectionGenerator
+import sectionproperties.pre.sections as sections
+from sectionproperties.analysis.cross_section import CrossSection
 
-# Create angle section
-(points, facets, holes) = sectionGenerator.Angle(d=90, b=150, t=12, r_root=10, r_toe=5, n_r=16)
+# create angle geometry
+geometry = sections.AngleSection(d=90, b=150, t=12, r_r=10, r_t=5, n_r=16)
 
-# Perform cross-sectional analysis
-mesh = main.crossSectionAnalysis(points, facets, holes, meshSize=2.5, nu=0.3)
+# create a finite element mesh
+mesh = geometry.create_mesh(mesh_sizes=[2.5])
 
-# Perform stress analysis
-main.stressAnalysis(mesh, Nzz=-50e3, Mxx=3e6, Myy=5e6, M11=0, M22=0, Mzz=1e6, Vx=5e3, Vy=3e3)
+# create a CrossSection analysis object
+section = CrossSection(geometry, mesh)
+section.plot_mesh()  # plot the mesh
+
+# perform a geometric, warping and plastic analysis
+section.calculate_geometric_properties()
+section.calculate_warping_properties()
+section.calculate_plastic_properties()
+section.plot_centroids()  # plot the centroids
+
+# perform a stress analysis
+stress_post = section.calculate_stress(N=-50e3, Mxx=3e6, Myy=5e6, Mzz=1e6, Vx=5e3, Vy=3e3)
+
+
 ```
 
 The mesh used for warping analysis is shown below:
@@ -158,3 +171,5 @@ Selected stress analysis plots are shown below:
   </a>
   <figcaption>Contour plot showing von Mises stress.</figcaption>
 </figure>
+
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"541c65ecb1b23522bcf1300db","lid":"b7a47b4e83","uniqueMethods":true}) })</script>
