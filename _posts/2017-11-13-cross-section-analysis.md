@@ -79,11 +79,16 @@ section.calculate_geometric_properties()
 section.calculate_warping_properties()
 section.calculate_plastic_properties()
 section.plot_centroids()  # plot the centroids
+section.display_results()  # print the results to the terminal
 
 # perform a stress analysis
 stress_post = section.calculate_stress(N=-50e3, Mxx=3e6, Myy=5e6, Mzz=1e6, Vx=5e3, Vy=3e3)
 
-
+# generate various stress plots
+stress_post.plot_stress_m_zz()
+stress_post.plot_vector_mzz_zxy()
+stress_post.plot_stress_v_zxy()
+stress_post.plot_stress_vm()
 ```
 
 The mesh used for warping analysis is shown below:
@@ -107,39 +112,59 @@ The centroidal locations are shown in the figure below:
 Selected annotated section property output is displayed below:
 
 ```
-Area = 2746.80182627
-cx = 50.9905249131 (x-centroid)
-cy = 21.2264755268
-Ixx_c = 1719026.97045 (Second moment of area about centroidal x-axis)
-Iyy_c = 6287251.54258
-Ixy_c = -1886208.80899
-Zxx+ = 24995.4758553 (Elastic section modulus about the centroidal x-axis, considering the top fibre)
-Zxx- = 80985.0400405
-Zyy+ = 63501.5137396
-Zyy- = 123302.349864
-rx_c = 25.016565267 (Radius of gyration about the centroidal x-axis)
-ry_c = 47.8428182325
-phi = -109.774864162 (Principal bending axis rotation angle)
-I11_c = 6965393.90567 (Second moment of area about the 11-axis)
-I22_c = 1040884.60736
-Z11+ = 69409.4336954
-Z11- = 97758.0099588
-Z22+ = 27961.1431946
-Z22- = 20764.843276
-r1_c = 50.3569220566
-r2_c = 19.4664890305
-Sxx = 45729.6667122 (Plastic section modulus about the x-axis)
-Syy = 113546.98153
-S11 = 121036.527767
-S22 = 43763.8376059
-J = 135336.217483 (Torsion constant)
-Iw = 159998036.954 (Warping constant)
-x_s,e = -42.9105894905 (x-shear centre)
-y_s,e = -15.0990405213
-A_s,x = 1538.85221978 (Shear area for loading in the x-direction)
-A_s,y = 855.667113775
-A_s,11 = 882.326380418
-A_s,22 = 1459.5422681
+Section Properties:
+A       = 2.746802e+03
+Qx      = 5.830492e+04
+Qy      = 1.400609e+05
+cx      = 5.099052e+01
+cy      = 2.122648e+01
+Ixx_g   = 2.956635e+06
+Iyy_g   = 1.342903e+07
+Ixy_g   = 1.086790e+06
+Ixx_c   = 1.719027e+06
+Iyy_c   = 6.287252e+06
+Ixy_c   = -1.886209e+06
+Zxx+    = 2.499548e+04
+Zxx-    = 8.098504e+04
+Zyy+    = 6.350151e+04
+Zyy-    = 1.233023e+05
+rx      = 2.501657e+01
+ry      = 4.784282e+01
+phi     = -1.097749e+02
+I11_c   = 6.965394e+06
+I22_c   = 1.040885e+06
+Z11+    = 6.940943e+04
+Z11-    = 9.775801e+04
+Z22+    = 2.796114e+04
+Z22-    = 2.076484e+04
+r11     = 5.035692e+01
+r22     = 1.946649e+01
+J       = 1.353366e+05
+Iw      = 1.623154e+08
+x_se    = 8.115249e+00
+y_se    = 6.120090e+00
+x_st    = 8.115249e+00
+y_st    = 6.120090e+00
+x1_se   = 2.872133e+01
+y2_se   = -3.523602e+01
+A_sx    = 1.539903e+03
+A_sy    = 8.581861e+02
+x_pc    = 3.509985e+01
+y_pc    = 9.158374e+00
+Sxx     = 4.572966e+04
+Syy     = 1.135470e+05
+SF_xx+  = 1.829517e+00
+SF_xx-  = 5.646679e-01
+SF_yy+  = 1.788099e+00
+SF_yy-  = 9.208825e-01
+x11_pc  = 4.125339e+01
+y22_pc  = 2.311568e+01
+S11     = 1.210365e+05
+S22     = 4.376384e+04
+SF_11+  = 1.743805e+00
+SF_11-  = 1.238124e+00
+SF_22+  = 1.565166e+00
+SF_22-  = 2.107593e+00
 ```
 
 Selected stress analysis plots are shown below:
