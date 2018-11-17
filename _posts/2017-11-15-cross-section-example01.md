@@ -77,15 +77,15 @@ split_stress.plot_vector_mzz_zxy()
 The torsion constant was calculated by the python package to be J = 14.236 x 10<sup>6</sup> mm<sup>4</sup>.
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/rhs_mesh.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/rhs_mesh.png" alt="RHS mesh.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png" alt="RHS mesh.">
   </a>
   <figcaption>Mesh discretisation for the closed 200 x 100 x 6 RHS.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/rhs_stress.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/rhs_stress.png" alt="RHS stress.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_stress.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_stress.png" alt="RHS stress.">
   </a>
   <figcaption>Shear stress due to torsion for the closed 200 x 100 x 6 RHS.</figcaption>
 </figure>
@@ -163,8 +163,8 @@ print("Shear Centre: {0:.5e}".format(x_s - cx))
 ```
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/pfc_centroids.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/pfc_centroids.png" alt="PFC centroids">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/PFC_centroids.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/PFC_centroids.png" alt="PFC centroids">
   </a>
   <figcaption>Mesh discretisation for the 250 PFC with principal axes and centroids.</figcaption>
 </figure>

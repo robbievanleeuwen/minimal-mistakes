@@ -118,14 +118,14 @@ ixx = 0
 # Loop through all the elements in the mesh
 for el in elements:
   # Determine the Gauss points for 6pt Gaussian quadrature
-  gps = femFunctions.gaussPoints(6)
+  gps = gauss_points(6)
 
   # Loop through each Gauss point for the current element
   for gp in gps:
     # Determine the shape functions, partial derivatives and
     # Jacobian for the current Gauss point and element
     # described by coordinates xy
-    (N, B, j) = femFunctions.shapeFunction(xy, gp)
+    (N, B, j) = shape_function(xy, gp)
 
     # Evaluate the integral at the current Gauss point and
     # add to the total. Note: gp[0] is the Gauss point weight,

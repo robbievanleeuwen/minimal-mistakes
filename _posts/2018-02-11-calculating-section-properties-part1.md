@@ -43,10 +43,10 @@ area = 0
 # Loop through all the elements in the mesh
 for el in elements:
   # Determine the Gauss points for 1pt Gaussian quadrature
-  gp = femFunctions.gaussPoints(1)
+  gp = gauss_points(1)
   # Determine the shape functions, partial derivatives and Jacobian for the
   # current Gauss point and element described by coordinates xy
-  (N, B, j) = femFunctions.shapeFunction(xy, gp)
+  (N, B, j) = shape_function(xy, gp)
 
   # Evaluate the integral at the current Gauss point and add to the total. Note:
   # gp[0] is the Gauss point weight, and j is the determinant of the Jacobian
@@ -81,13 +81,13 @@ qy = 0
 # Loop through all the elements in the mesh
 for el in elements:
   # Determine the Gauss points for 3pt Gaussian quadrature
-  gps = femFunctions.gaussPoints(3)
+  gps = gauss_points(3)
 
   # Loop through each Gauss point for the current element
   for gp in gps:
     # Determine the shape functions, partial derivatives and Jacobian for the
     # current Gauss point and element described by coordinates xy
-    (N, B, j) = femFunctions.shapeFunction(xy, gp)
+    (N, B, j) = shape_function(xy, gp)
 
     # Evaluate the integral at the current Gauss point and add to the total.
     # Note: gp[0] is the Gauss point weight, xy[1,:] are the y-coordinates of
@@ -129,13 +129,13 @@ ixy = 0
 # Loop through all the elements in the mesh
 for el in elements:
   # Determine the Gauss points for 3pt Gaussian quadrature
-  gps = femFunctions.gaussPoints(6)
+  gps = gauss_points(6)
 
   # Loop through each Gauss point for the current element
   for gp in gps:
     # Determine the shape functions,{ p}artial derivatives and Jacobian for the
     # current Gauss point and element described by coordinates xy
-    (N, B, j) = femFunctions.shapeFunction(xy, gp)
+    (N, B, j) = shape_function(xy, gp)
 
     # Evaluate the integral at the current Gauss point and add to the total.
     # Note: gp[0] is the Gauss point weight, xy[1,:] are the y-coordinates of
@@ -239,21 +239,22 @@ $$
 The principal radii of gyration can be easily calculated using the new principal moments of inertia. To calculate the principal elastic section moduli, the distance to the extreme fibres in the principal directions needs to be determined. Firstly, a function is written to convert a coordinate in the xy-axis into a principal axis coordinate:
 
 ```python
-def principalCoordinate(phi, x, y):
-    '''
-    This function determines the coordinates of the cartesian point (x,y) in
-    the principal axis system given an axis rotation angle phi.
-    '''
+def principal_coordinate(phi, x, y):
+    """
+    Determines the coordinates of the cartesian point *(x, y)* in the
+    principal axis system given an axis rotation angle phi.
+    """
+
     # convert principal axis angle to radians
     phi_rad = phi * np.pi / 180
 
     # form rotation matrix
-    R = (np.array([[np.cos(phi_rad), np.sin(phi_rad)], [-np.sin(phi_rad),
-                                                        np.cos(phi_rad)]]))
+    R = np.array([[np.cos(phi_rad), np.sin(phi_rad)],
+                  [-np.sin(phi_rad), np.cos(phi_rad)]])
+
     # calculate rotated x and y coordinates
     x_rotated = R.dot(np.array([x, y]))
 
-    # return new coordinates in a tuple
     return (x_rotated[0], x_rotated[1])
 ```
 
@@ -263,7 +264,7 @@ Now the extreme fibre positions can be calculated by looping through all the nod
 # loop through all points in the mesh
 for (i, point) in enumerate(nodes):
     # determine the coordinate of the point wrt the principal axis
-    (x1, y2) = (principalCoordinate(phi, point[0] - x_c, point[1] - y_c))
+    (x1, y2) = (principal_coordinate(phi, point[0] - x_c, point[1] - y_c))
 
     # initialise min, max variables
     if i == 0:
