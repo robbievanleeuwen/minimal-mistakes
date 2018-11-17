@@ -77,22 +77,22 @@ split_stress.plot_vector_mzz_zxy()
 The torsion constant was calculated by the python package to be J = 14.236 x 10<sup>6</sup> mm<sup>4</sup>.
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png" alt="RHS mesh.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/rhs_mesh.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/rhs_mesh.png" alt="RHS mesh.">
   </a>
   <figcaption>Mesh discretisation for the closed 200 x 100 x 6 RHS.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_stress.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_stress.png" alt="RHS stress.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/rhs_stress.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/rhs_stress.png" alt="RHS stress.">
   </a>
   <figcaption>Shear stress due to torsion for the closed 200 x 100 x 6 RHS.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_vectors.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_vectors.png" alt="RHS vectors.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/rhs_vector.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/rhs_vector.png" alt="RHS vectors.">
   </a>
   <figcaption>Shear stress vectors due to torsion for the closed 200 x 100 x 6 RHS at the top right of the section.</figcaption>
 </figure>
@@ -102,29 +102,29 @@ The torsion constant was calculated by the python package to be J = 14.236 x 10<
 The torsion constant was calculated by the python program to be J = 39.648 x 10<sup>3</sup> mm<sup>4</sup>, approximately 360 times less stiff than the closed section.
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_mesh.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_mesh.png" alt="RHS_Split mesh.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/split_mesh.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/split_mesh.png" alt="RHS_Split mesh.">
   </a>
   <figcaption>Mesh discretisation for the split 200 x 100 x 6 RHS.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_stress.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_stress.png" alt="RHS_Split stress.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/split_stress.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/split_stress.png" alt="RHS_Split stress.">
   </a>
   <figcaption>Shear stress due to torsion for the split 200 x 100 x 6 RHS, approximately 30 times higher than the closed section.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_vectors1.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_vectors1.png" alt="RHS_Split vectors.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/split_vector.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/split_vector.png" alt="RHS_Split vectors.">
   </a>
   <figcaption>Shear stress vectors due to torsion for the split 200 x 100 x 6 RHS at the top right of the section. The shear stress now has to flow within the thickness of the wall, rather than around the entire section.</figcaption>
 </figure>
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_vectors2.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/RHS_Split_vectors2.png" alt="RHS_Split vectors.">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/split_vector2.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/split_vector2.png" alt="RHS_Split vectors.">
   </a>
   <figcaption>Shear stress vectors due to torsion for the split 200 x 100 x 6 RHS adjacent to the split.</figcaption>
 </figure>
@@ -163,8 +163,8 @@ print("Shear Centre: {0:.5e}".format(x_s - cx))
 ```
 
 <figure>
-  <a href="/assets/images/posts/2017-11-15-cross-section-example01/PFC_centroids.png">
-    <img src="/assets/images/posts/2017-11-15-cross-section-example01/PFC_centroids.png" alt="PFC centroids">
+  <a href="/assets/images/posts/2017-11-15-cross-section-example01/pfc_centroids.png">
+    <img src="/assets/images/posts/2017-11-15-cross-section-example01/pfc_centroids.png" alt="PFC centroids">
   </a>
   <figcaption>Mesh discretisation for the 250 PFC with principal axes and centroids.</figcaption>
 </figure>
@@ -246,7 +246,7 @@ stress.plot_stress_v_zxy(pause=False)
 stress.plot_stress_vm()
 ```
 
-The mesh, centroids and stress contours are shown below:
+The centroids and stress contours are shown below:
 
 <figure>
   <a href="/assets/images/posts/2017-11-15-cross-section-example01/built1_centroids.png">
@@ -324,7 +324,7 @@ stress.plot_stress_v_zxy(pause=False)
 stress.plot_stress_vm()
 ```
 
-The mesh, centroids and stress contours are shown below:
+The centroids and stress contours are shown below:
 
 <figure>
   <a href="/assets/images/posts/2017-11-15-cross-section-example01/built2_centroids.png">
