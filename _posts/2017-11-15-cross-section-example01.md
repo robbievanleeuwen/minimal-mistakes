@@ -9,44 +9,72 @@ header:
   image_description: "Built-up section."
   caption: # "" # for photo credit
   teaser: /assets/images/posts/2017-11-15-cross-section-example01/teaser.png
+toc: true
+toc_label: Table of Contents
+toc_sticky: true
 ---
 
-# Cross-Section Analysis Examples
-
-## Contents
-
-* [Split 200 x 100 x 6 RHS](#rhs)
-* [250 PFC](#pfc)
-* [Built-up 200UB25 + 150 x 100 x 9 RHS](#builtup1)
-* [Built-up 50 x 5 SHS + 100 x 50 x 5 RHS + 200 x 6 Flat](#builtup2)
-
-<a name="rhs"></a>
-## Split 200 x 100 x 6 RHS
+# Split 200 x 100 x 6 RHS
 
 A box section provides torsional stiffness by providing a closed path for shear stresses to flow at a considerable distance from a rotational centre. Preventing this enclosed path dramatically reduces the torsional rigidity of the section. This is illustrated through the analysis and of a 200 x 100 x 6 RHS, and a comparison to that of the same section with a 1 mm wide cut in one of the sides. A torsion of 1 kN.m is applied to both sections.
 
 The analysis can be carried out with the following python commands:
 
 ```python
-import main
-import sectionGenerator
+import sectionproperties.pre.sections as sections
+from sectionproperties.analysis.cross_section import CrossSection
 
-# Closed RHS
-(points, facets, holes) = sectionGenerator.RHS(100, 200, 6, 15, 16)
-mesh1 = main.crossSectionAnalysis(points, facets, holes, meshSize=2.5, nu=0.3)
+# create RHS geometry
+rhs_geometry = sections.Rhs(d=100, b=200, t=6, r_out=15, n_r=16)
 
-# Open RHS
-(points, facets, holes) = sectionGenerator.RHS_Split(100, 200, 1, 6, 15, 16)
-mesh2 = main.crossSectionAnalysis(points, facets, holes, meshSize=2.5, nu=0.3)
+# create split RHS geometry
+split_geometry = sections.Rhs(d=100, b=200, t=6, r_out=15, n_r=16)
+# create points at split
+p1 = split_geometry.add_point([99.5, 0])
+p2 = split_geometry.add_point([99.5, 6])
+p3 = split_geometry.add_point([101.5, 0])
+p4 = split_geometry.add_point([101.5, 6])
+# create facets at split
+split_geometry.add_facet([p1, p2])
+split_geometry.add_facet([p3, p4])
+split_geometry.add_hole([100, 3])  # add hole
+split_geometry.clean_geometry()  # clean the geometry
 
-# Perform stress analysis
-main.stressAnalysis(mesh1, Nzz=0, Mxx=0, Myy=0, M11=0, M22=0, Mzz=1e6, Vx=0, Vy=0)
-main.stressAnalysis(mesh2, Nzz=0, Mxx=0, Myy=0, M11=0, M22=0, Mzz=1e6, Vx=0, Vy=0)
+# create mesh and CrossSection objects
+rhs_mesh = rhs_geometry.create_mesh(mesh_sizes=[2.5])
+split_mesh = split_geometry.create_mesh(mesh_sizes=[2.5])
+rhs_section = CrossSection(rhs_geometry, rhs_mesh)
+split_section = CrossSection(split_geometry, split_mesh)
+
+# plot the meshes
+rhs_section.plot_mesh(pause=False)
+split_section.plot_mesh()
+
+# perform a geometric, warping analysis and stress analyses
+print("CLOSED RHS:")
+rhs_section.calculate_geometric_properties(time_info=True)
+rhs_section.calculate_warping_properties(time_info=True)
+rhs_stress = rhs_section.calculate_stress(Mzz=1e6, time_info=True)
+print("\nSPLIT RHS:")
+split_section.calculate_geometric_properties(time_info=True)
+split_section.calculate_warping_properties(time_info=True)
+split_stress = split_section.calculate_stress(Mzz=1e6, time_info=True)
+
+# print torsional constants
+print("Torsion Constants:")
+print("CLOSED RHS: {0:.5e}".format(rhs_section.get_j()))
+print("SPLIT RHS: {0:.5e}".format(split_section.get_j()))
+
+# plot the stress
+rhs_stress.plot_stress_mzz_zxy(pause=False)
+rhs_stress.plot_vector_mzz_zxy(pause=False)
+split_stress.plot_stress_mzz_zxy(pause=False)
+split_stress.plot_vector_mzz_zxy()
 ```
 
-### Closed RHS results
+## Closed RHS results
 
-The torsion constant was calculated by the python program to be J = 14.236 x 10<sup>6</sup> mm<sup>4</sup>.
+The torsion constant was calculated by the python package to be J = 14.236 x 10<sup>6</sup> mm<sup>4</sup>.
 
 <figure>
   <a href="/assets/images/posts/2017-11-15-cross-section-example01/RHS_mesh.png">
@@ -69,7 +97,7 @@ The torsion constant was calculated by the python program to be J = 14.236 x 10<
   <figcaption>Shear stress vectors due to torsion for the closed 200 x 100 x 6 RHS at the top right of the section.</figcaption>
 </figure>
 
-### Split RHS results
+## Split RHS results
 
 The torsion constant was calculated by the python program to be J = 39.648 x 10<sup>3</sup> mm<sup>4</sup>, approximately 360 times less stiff than the closed section.
 
@@ -101,17 +129,37 @@ The torsion constant was calculated by the python program to be J = 39.648 x 10<
   <figcaption>Shear stress vectors due to torsion for the split 200 x 100 x 6 RHS adjacent to the split.</figcaption>
 </figure>
 
-<a name="pfc"></a>
-## 250 PFC
+# 250 PFC
 
 The analysis of a 250 PFC (250 mm deep parallel flange channel) can be carried out with the following python commands:
 
 ```python
-import main
-import sectionGenerator
+import sectionproperties.pre.sections as sections
+from sectionproperties.analysis.cross_section import CrossSection
 
-(points, facets, holes) = sectionGenerator.PFC(d=250, b=90, tf=15, tw=8, r=12, n_r=16)
-mesh = main.crossSectionAnalysis(points, facets, holes, meshSize=4, nu=0.3)
+# create PFC geometry
+geometry = sections.PfcSection(d=250, b=90, t_f=15, t_w=8, r=12, n_r=16)
+
+# create a mesh
+mesh = geometry.create_mesh(mesh_sizes=[4])
+
+# create a CrossSection object
+section = CrossSection(geometry, mesh)
+
+# perform a geometric, warping and plastic analysis
+section.calculate_geometric_properties()
+section.calculate_warping_properties()
+section.calculate_plastic_properties()
+
+# plot the centroids
+section.plot_centroids()
+
+# get the torsion constant, warping constant and shear centre
+print("Torsion Constant: {0:.5e}".format(section.get_j()))
+print("Warping Constant: {0:.5e}".format(section.get_gamma()))
+(cx, _) = section.get_c()
+(x_s, _) = section.get_sc()
+print("Shear Centre: {0:.5e}".format(x_s - cx))
 ```
 
 <figure>
@@ -137,7 +185,7 @@ I_w = 35.9 \times 10^9 \textrm{mm}^6 \\
 x_s = -58.5 \textrm{mm}
 $$
 
-A mesh refinement study using the python cross-section program shows that the OneSteel value for the torsion constant is slightly (4%) overestimated, whereas the warping constant and shear centre show closer convergence. The numerical results obtained from the python program can be compared to simple hand calculations:
+A mesh refinement study using the python cross-section package shows that the OneSteel value for the torsion constant is slightly (4%) overestimated, whereas the warping constant and shear centre show closer convergence. The numerical results obtained from the python package can be compared to simple hand calculations:
 
 * Torsion Constant [1]
 
@@ -157,39 +205,45 @@ $$
 x_s = -x_c + \frac{t_w}{2} -\frac{3 t_f (b_f - 0.5t_w)^2 }{6 (b_f - 0.5t_w) t_f + (d - t_f) t_w} = 59.20 \textrm{mm}
 $$
 
-The above hand calculations align well with the results from the python program and the OneSteel catalogue.
+The above hand calculations align well with the results from the python package and the OneSteel catalogue.
 
-<a name="builtup1"></a>
-## Built-up 200UB25 + 150 x 100 x 9 RHS
+# Built-up 200UB25 + 150 x 100 x 9 RHS
 
 A steel section is fabricated by placing a 150 x 100 x 9 RHS on its side on top of a 200UB25. The section is subjected to a major axis bending moment of 50 kN.m, a torsion moment of 10 kN.m and a y-direction shear force of -25 kN.
 
 The analysis can be carried out by using the section builder function with the following python commands:
 
 ```python
-import main
-import sectionGenerator
+import sectionproperties.pre.sections as sections
+from sectionproperties.analysis.cross_section import CrossSection
 
-(UBpoints, UBfacets, UBholes) = sectionGenerator.ISection(203, 133, 7.8, 5.8, 8.9, 8)
-(RHSpoints, RHSfacets, RHSholes) = sectionGenerator.RHS(100, 150, 9, 22.5, 8)
+# create geometry
+ub_geometry = sections.ISection(d=203, b=133, t_f=7.8, t_w=5.8, r=8.9, n_r=8, shift=[-66.5, 0])
+rhs_geometry = sections.Rhs(d=100, b=150, t=9, r_out=22.5, n_r=8, shift=[-75, 203])
+geometry = sections.MergedSection([ub_geometry, rhs_geometry])  # merge the sections
+geometry.clean_geometry()  # clean the geometry
 
-UB = {  'points': UBpoints,
-        'facets': UBfacets,
-        'holes' : UBholes,
-        'x'     : -0.5 * 133,
-        'y'     : 0 }
+# create a mesh
+mesh = geometry.create_mesh(mesh_sizes=[5, 5])
 
-RHS = { 'points': RHSpoints,
-        'facets': RHSfacets,
-        'holes' : RHSholes,
-        'x'     : -75,
-        'y'     : 203 }
+# create a CrossSection object
+section = CrossSection(geometry, mesh)
+section.plot_mesh()
 
-(points, facets, holes) = sectionGenerator.combineShapes([UB, RHS])
-mesh = main.crossSectionAnalysis(points, facets, holes, meshSize=5, nu=0.3)
+# perform a geometric, warping, plastic and stress analysis
+section.calculate_geometric_properties()
+section.calculate_warping_properties()
+section.calculate_plastic_properties()
+stress = section.calculate_stress(Mxx=50e6, Mzz=10e6, Vy=-25e3)
 
-# Perform stress analysis
-main.stressAnalysis(mesh, Nzz=0, Mxx=50e6, Myy=0, M11=0, M22=0, Mzz=10e6, Vx=0, Vy=-25e3)
+# plot the centroids
+section.plot_centroids()
+
+# plot the stress
+stress.plot_stress_m_zz(pause=False)
+stress.plot_stress_mzz_zxy(pause=False)
+stress.plot_stress_v_zxy(pause=False)
+stress.plot_stress_vm()
 ```
 
 The mesh, centroids and stress contours are shown below:
@@ -229,46 +283,45 @@ The mesh, centroids and stress contours are shown below:
   <figcaption>von Mises stress.</figcaption>
 </figure>
 
-<a name="builtup2"></a>
-## Built-up 50 x 5 SHS + 100 x 50 x 5 RHS + 200 x 6 Flat
+# Built-up 50 x 5 SHS + 100 x 50 x 5 RHS + 200 x 6 Flat
 
 A zed shaped steel section is fabriacted by welding a 50 x 5 SHS and a 100 x 50 x 5 RHS to a 200 x 6 flat section. The section is subjected to a major axis bending moment of 10 kN.m, a torsion moment of 5 kN.m and a y-direction shear force of -15 kN.
 
 The analysis can be carried out by using the section builder function with the following python commands:
 
 ```python
-import main
-import sectionGenerator
+import sectionproperties.pre.sections as sections
+from sectionproperties.analysis.cross_section import CrossSection
 
-(Flatpoints, Flatfacets, Flatholes) = sectionGenerator.Flat(200, 6)
-(SHSpoints, SHSfacets, SHSholes) = sectionGenerator.RHS(50, 50, 5, 12.5, 8)
-(RHSpoints, RHSfacets, RHSholes) = sectionGenerator.RHS(50, 100, 5, 12.5, 8)
+# create geometry
+flat_geometry = sections.RectangularSection(d=200, b=6, shift=[50, -100])
+shs_geometry = sections.Rhs(d=50, b=50, t=5, r_out=12.5, n_r=8, shift=[56, -100])
+rhs_geometry = sections.Rhs(d=50, b=100, t=5, r_out=12.5, n_r=8, shift=[-50, 50])
+# merge the sections
+geometry = sections.MergedSection([flat_geometry, shs_geometry, rhs_geometry])
+geometry.clean_geometry()  # clean the geometry
 
-Flat = {'points': Flatpoints,
-        'facets': Flatfacets,
-        'holes' : Flatholes,
-        'x'     : 50,
-        'y'     : -100}
+# create a mesh
+mesh = geometry.create_mesh(mesh_sizes=[1.5, 1.5, 1.5])
 
-SHS = {'points' : SHSpoints,
-        'facets': SHSfacets,
-        'holes' : SHSholes,
-        'x'     : 56,
-        'y'     : -100}
+# create a CrossSection object
+section = CrossSection(geometry, mesh)
+section.plot_mesh()
 
-RHS = {'points' : RHSpoints,
-        'facets': RHSfacets,
-        'holes' : RHSholes,
-        'x'     : -50,
-        'y'     : 50}
+# perform a geometric, warping, plastic and stress analysis
+section.calculate_geometric_properties()
+section.calculate_warping_properties()
+section.calculate_plastic_properties()
+stress = section.calculate_stress(Mxx=10e6, Mzz=5e6, Vy=-15e3)
 
-section = [Flat, RHS, SHS]
+# plot the centroids
+section.plot_centroids()
 
-(points, facets, holes) = sectionGenerator.combineShapes(section)
-mesh5 = main.crossSectionAnalysis(points, facets, holes, meshSize=1.5, nu=0.3)
-
-# Perform stress analysis
-main.stressAnalysis(mesh5, Nzz=0, Mxx=10e6, Myy=0, M11=0, M22=0, Mzz=5e6, Vx=0, Vy=-15e3)
+# plot the stress
+stress.plot_stress_m_zz(pause=False)
+stress.plot_stress_mzz_zxy(pause=False)
+stress.plot_stress_v_zxy(pause=False)
+stress.plot_stress_vm()
 ```
 
 The mesh, centroids and stress contours are shown below:
@@ -310,6 +363,6 @@ The mesh, centroids and stress contours are shown below:
 
 <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"541c65ecb1b23522bcf1300db","lid":"b7a47b4e83","uniqueMethods":true}) })</script>
 
-## References
+# References
 1. AS 4100-1998: Steel Structures
 2. W.D. Pilkey, Analysis and Design of Elastic Beams: Computational Methods, John Wiley & Sons, Inc., New York, 2002.

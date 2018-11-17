@@ -9,6 +9,9 @@ header:
   image_description:
   caption: # "" # for photo credit
   teaser: /assets/images/posts/2018-02-11-calculating-section-properties-part1/teaser.jpg
+toc: true
+toc_label: Table of Contents
+toc_sticky: true
 ---
 
 >This blog post presents some of the finite element theory used in the section properties program in a simplified and easy to understand manner. It is worth noting that the notions used in the section properties program are the same that are applied in commercial finite element solvers. For a more in-depth overview of the section properties program, check out the paper I wrote [here](/assets/cross-section.pdf).
